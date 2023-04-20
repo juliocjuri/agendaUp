@@ -4,12 +4,15 @@
   "description": "This is the server-side of the Agenda Up application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/server.js"
   },
   "author": "Julio Juriolli",
   "license": "ISC",
   "dependencies": {
+    "config": "^3.3.9",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^7.0.4"
   }
 }
