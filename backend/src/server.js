@@ -1,7 +1,9 @@
 const dotenv = require('dotenv');
 const express = require('express');
-const scheduleRoutes = require('./routes/schedule')
-const connection = require('../config/connection')
+const scheduleRoutes = require('./routes/schedule');
+const userRoutes = require('./routes/user');
+const connection = require('../config/connection');
+const bodyParser = require('body-parser');
 
 connection();
 
@@ -9,7 +11,9 @@ dotenv.config();
 
 const app = express();
 
-app.use('/api/schedule', scheduleRoutes)
+app.use(bodyParser.json());
+app.use('/api/schedule', scheduleRoutes);
+app.use('/api/user', userRoutes);
 
 const PORT = process.env.SERVER_PORT || 3333
 
