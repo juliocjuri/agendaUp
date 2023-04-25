@@ -5,6 +5,13 @@ const jwt = require('jsonwebtoken');
 const createUser = async (req, res) => {
      const { name, email, password } = req.body;
 
+     const alreadyExists = await User.findOne({ email });
+
+     if(alreadyExists){
+          return res.status(400).json();
+     }
+
+
      const user = new User({
           name,
           email,
@@ -44,13 +51,13 @@ const authUser = async (req, res) => {
      })
 
      if(!user){
-          return res.status(400)
+          return res.status(400).json()
      }
 
      const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
      if(!isPasswordCorrect){
-          return res.status(400)
+          return res.status(400).json()
      }
 
      const payload = {
