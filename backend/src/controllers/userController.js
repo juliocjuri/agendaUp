@@ -29,16 +29,8 @@ const createUser = async (req, res) => {
           }
      }
 
-     jwt.sign(
-          payload,
-          process.env.JWT_SECRET,
-          { expiresIn: '7d' },
-          (err, token) => {
-               if (err){
-                    console.log("Erro:", err)
-               } else {
-                    console.log("Sucesso: " + token)
-               }
+     jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d' }, (error) => {
+               if(!error) return res.json({ token }).status(200)
           }
      )
 }
@@ -66,15 +58,8 @@ const authUser = async (req, res) => {
           }
      }
 
-     jwt.sign(
-          payload,
-          process.env.JWT_SECRET,
-          { expiresIn: '7d'},
-          (err, token) => {
-               res.json({ token })
-               if(err){
-                    console.log("Não existe")
-               }
+     jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d'}, (error, token) => {
+               if(!error) return res.json({ token }).status(200)
           }
      )
 }
