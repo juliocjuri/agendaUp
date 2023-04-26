@@ -2,6 +2,8 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const dayInMilisecond = 86400000;
+
 const createUser = async (req, res) => {
      const { name, email, password } = req.body;
 
@@ -59,7 +61,10 @@ const authUser = async (req, res) => {
      }
 
      jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d'}, (error, token) => {
-               if(!error) return res.json({ token }).status(200)
+               if(!error) return res.cookie('token', token, {
+                    expires: new Date(Date.now() + dayInMilisecond*7), 
+                    httpOnly: true,
+               }).status(200).json({})
           }
      )
 }

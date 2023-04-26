@@ -4,7 +4,8 @@ const router = express.Router();
 
 const Schedule = require('../models/Schedule');
 const scheduleController = require('../controllers/scheduleController');
+const authentication = require('../../middlewares/auth');
 
-router.post('/create', scheduleController.createSchedule)
+router.post('/create', authentication, scheduleController.createSchedule)
 
 module.exports = router
