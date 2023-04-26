@@ -3,11 +3,8 @@ const dbConnection = require('../../config/connection');
 const router = express.Router();
 
 const Schedule = require('../models/Schedule');
+const scheduleController = require('../controllers/scheduleController');
 
-/*
-* This will be the getAll route
-*/
-router.get('/', async (req, res) => {
-})
+router.post('/create', scheduleController.createSchedule)
 
 module.exports = router
