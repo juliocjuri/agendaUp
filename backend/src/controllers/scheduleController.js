@@ -13,6 +13,16 @@ const createSchedule = async (req, res) => {
           invitedEmails
      });
 
+     User.find({}).then((users) => {
+          let alreadySentResponse = false;
+          users.forEach((user, index) => {
+               if(user.email != invitedEmails[index] && !alreadySentResponse){
+                    res.status(400).json({ warnings: `Email without an account detected (${invitedEmails[index]})`});
+                    alreadySentResponse = true;
+               }
+          })
+     })
+     
      await schedule.save();
 }
 
