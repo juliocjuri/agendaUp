@@ -4,9 +4,11 @@
 
 .sidebar-wrapper{
      width: 200px;
-     height: 100vh;
-     position: relative;
+     position: fixed;
      border-right: solid 0.5px rgb(91, 91, 91);
+     background-color: white;
+     height: 100%;
+     z-index: 1000
 }
 
 .sidebar-wrapper-collapsed{

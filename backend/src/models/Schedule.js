@@ -6,7 +6,7 @@ const ScheduleSchema = new Schema({
           type: String
      },
      date: {
-          type: String
+          type: Date
      },
      user: {
           type: String
