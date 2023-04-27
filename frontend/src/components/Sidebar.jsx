@@ -1,6 +1,11 @@
 import React, { Component, useState } from 'react';
 import './Sidebar.css'
-import { FaBars } from 'react-icons/fa'
+import { 
+     FaBars,
+     FaHome,
+FaBell,
+FaList,
+FaPlus } from 'react-icons/fa'
 
 class Sidebar extends Component {
      constructor(props){
@@ -9,6 +14,29 @@ class Sidebar extends Component {
                isOpened: false,
                rotate: false
           }
+          this.menuItems = [
+               {
+                   path:"/home",
+                   name:"Home",
+                   icon: <FaHome className='sidebar-item-icon' color='#0048a7'/>
+               },
+               {
+                   path:"/createschedule",
+                   name:"Agendar",
+                   icon: <FaPlus className='sidebar-item-icon' color='#0048a7'/> 
+               },
+               {
+                   path:"/myschedules",
+                   name:"Agendamentos",
+                   icon: <FaList className='sidebar-item-icon' color='#0048a7'/> 
+               },
+               {
+                   path:"/notifications",
+                   name:"Notificações",
+                   icon: <FaBell className='sidebar-item-icon' color='#0048a7'/>
+               }
+           ]
+          
      }
 
      handleButtonClick(){
@@ -39,8 +67,19 @@ render() {
                               rotate={this.state.rotate.toString()}
                          />
                     </header>
-                    <main className='icons-wrapper'>
-                         
+                    <main>
+                         {this.menuItems.map((item, index) => {
+                              return(
+                                   <div className='sidebar-item-wrapper'>
+                                        <div className='sidebar-item-icon'>
+                                             {item.icon}
+                                        </div>
+                                        <div className={this.state.isOpened ? 'sidebar-item-text' : 'sidebar-item-text sidebar-item-text-collapsed'}>
+                                             {item.name}
+                                        </div>
+                                   </div>
+                              )
+                         })}
                     </main>
                </div>
           </div>
@@ -48,5 +87,6 @@ render() {
 }
 
 }
+
 
 export default Sidebar;
