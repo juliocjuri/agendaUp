@@ -1,0 +1,30 @@
+*{
+     transition: all 0.5s;
+}
+
+.sidebar-wrapper{
+     width: 200px;
+     height: 100vh;
+     position: relative;
+     border-right: solid 0.5px rgb(91, 91, 91);
+}
+
+.sidebar-wrapper-collapsed{
+     width: 70px;
+}
+
+.collapse-btn{
+     height: 40px;
+     width: 40px;
+     position: absolute;
+     right: -10px;
+     border-radius: 10px;
+     border-width: 0.1px;
+     top: 10px;
+     cursor: pointer;
+     background-color: white;
+}
+
+.collapse-btn:hover{
+     background-color: rgb(236, 236, 236);
+}
