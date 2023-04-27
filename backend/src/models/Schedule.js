@@ -13,6 +13,9 @@ const ScheduleSchema = new Schema({
      },
      invitedEmails: {
           type: Array
+     },
+     completed: {
+          type: Boolean
      }
 })
 

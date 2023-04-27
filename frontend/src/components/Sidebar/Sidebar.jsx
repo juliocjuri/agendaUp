@@ -3,9 +3,9 @@ import './Sidebar.css'
 import { 
      FaBars,
      FaHome,
-FaBell,
-FaList,
-FaPlus } from 'react-icons/fa'
+     FaBell,
+     FaList,
+     FaPlus } from 'react-icons/fa'
 
 class Sidebar extends Component {
      constructor(props){
