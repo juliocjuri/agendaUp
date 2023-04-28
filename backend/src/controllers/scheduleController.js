@@ -3,6 +3,8 @@ const User = require('../models/User');
 
 const jwt = require('jsonwebtoken');
 
+//TODO: need to fix the status codes
+
 const createSchedule = async (req, res) => {
      const { name, date, user, invitedEmails, completed } = req.body;
      
@@ -18,7 +20,7 @@ const createSchedule = async (req, res) => {
           let alreadySentServerResponse = false;
           registeredUsers.forEach((user, index) => {
                if(user.email != invitedEmails[index] && !alreadySentServerResponse){
-                    res.status(400).json({ warnings: `Unregistered email detected (${invitedEmails[index]})`});
+                    res.status(200).json({ warnings: `Unregistered email detected (${invitedEmails[index]})`});
                     alreadySentServerResponse = true;
                }
           })
