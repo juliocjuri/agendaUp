@@ -44,7 +44,6 @@ class Sidebar extends Component {
                isOpened: !this.state.isOpened,
                rotate: !this.state.rotate
           })
-          console.log(this.state.isOpened)
      }
 
 render() {

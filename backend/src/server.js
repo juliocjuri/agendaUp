@@ -6,6 +6,14 @@ const cookieParser = require('cookie-parser')
 const scheduleRoutes = require('./routes/schedule');
 const userRoutes = require('./routes/user');
 const connection = require('../config/connection');
+const cors = require('cors');
+
+const corsOptions ={
+   origin:'*', 
+   credentials:true,       
+   optionSuccessStatus:200,
+}
+
 
 connection();
 
@@ -15,6 +23,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors(corsOptions))
 
 app.use('/api/schedule', scheduleRoutes);
 app.use('/api/user', userRoutes);

@@ -3,8 +3,9 @@ import Sidebar from '../../../components/Sidebar/Sidebar';
 import './style.css'
 import schedules from '../../../devUtils/scheduleSchema';
 import { Checkbox } from '@mui/material'
+import  Api from '../../../services/api';
 
-console.log(schedules)
+
 /*
 TODO: I have to insert the list of schedules depending on the quantity of completed schedules from the db
 */

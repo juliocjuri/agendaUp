@@ -27,7 +27,7 @@ const createUser = async (req, res) => {
 
      const payload = {
           user: {
-               id: user._id,
+               email: user.email,
           }
      }
 
@@ -59,12 +59,17 @@ const authUser = async (req, res) => {
                email: user.email
           }
      }
-
+     
      jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d'}, (error, token) => {
-               if(!error) return res.cookie('token', token, {
+               if(!error) {
+                    return res.cookie('token', token, {
                     expires: new Date(Date.now() + dayInMilisecond*7), 
-                    httpOnly: true,
-               }).status(200).json({})
+                    httpOnly: false,
+               }).status(200).json({
+                    token
+               }).send({ user, token: token})
+               
+          }
           }
      )
 }
