@@ -56,7 +56,7 @@ const authUser = async (req, res) => {
 
      const payload = {
           user: {
-               id: user._id
+               email: user.email
           }
      }
 

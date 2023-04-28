@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 
 const authentication = async (req, res, next) => {
-     //Business rule of the token authentication
      const { token } = req.cookies;
 
      if(!token) return res.status(401).json({ error: 'You have to login'})

@@ -4,13 +4,14 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 const createSchedule = async (req, res) => {
-     const { name, date, user, invitedEmails } = req.body;
+     const { name, date, user, invitedEmails, completed } = req.body;
      
      const schedule = new Schedule({
           name,
           date,
           user,
-          invitedEmails
+          invitedEmails,
+          completed
      });
 
      User.find({}).then((registeredUsers) => {
@@ -26,6 +27,18 @@ const createSchedule = async (req, res) => {
      await schedule.save();
 }
 
+const getUserSchedules = async (req, res) => {
+     try{
+          const userSchedules = await Schedule.find({
+               user: req.user.email
+          })
+          res.json(userSchedules)
+     } catch (err){
+          res.status(500).json({ error: "Couldn't make the requisition"});
+     }
+}
+
 module.exports = {
      createSchedule,
+     getUserSchedules
 }
