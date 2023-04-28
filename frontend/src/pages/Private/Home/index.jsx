@@ -40,7 +40,6 @@ class Home extends Component {
                               </div>
 
 
-                              <hr className='divider-vertical' />
                               <div className='week-schedules'>
 
                                    <div className='week-schedule-list'>

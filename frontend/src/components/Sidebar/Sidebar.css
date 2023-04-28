@@ -1,18 +1,19 @@
 *{
-     transition: all 0.5s;
 }
 
 .sidebar-wrapper{
      width: 200px;
      position: fixed;
-     border-right: solid 0.5px rgb(91, 91, 91);
+     border-right: solid 0.5px rgb(224, 224, 224);
      background-color: white;
      height: 100%;
-     z-index: 1000
+     z-index: 1000;
+     transition: all 0.5s;
 }
 
 .sidebar-wrapper-collapsed{
      width: 80px;
+     transition: all 0.5s;
 }
 
 .collapse-btn{
@@ -25,10 +26,12 @@
      top: 10px;
      cursor: pointer;
      background-color: white;
+     transition: all 0.5s;
 }
 
 .collapse-btn:hover{
      background-color: #d5e7fe;
+     transition: all 0.5s;
 }
 
 
@@ -48,12 +51,14 @@
      margin: 0 auto;
      position: relative;
      top: 10px;
+     transition: all 0.5s;
 }
 
 .logo-check-sign[rotate='true']{
      animation: rotate .5s linear forwards;
      width: 70px;
      height: 70px;
+     transition: all 0.5s;
 }
 
 .sidebar-item-wrapper{
@@ -66,10 +71,12 @@
      margin-left: 5px;
      margin-right: 5px;
      cursor: pointer;
+     transition: all 0.5s;
 }
 
 .sidebar-item-wrapper:hover{
      background-color: rgb(220, 220, 220);
+     transition: all 0.5s;
 }
 
 .sidebar-item-icon{

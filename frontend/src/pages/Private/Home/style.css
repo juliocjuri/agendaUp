@@ -48,18 +48,13 @@
      content: 	'• ';
 }
 
-.divider-vertical{
-     border-top: 1px solid #bbb;
-     width: 100%;
-     margin-top: 30px;
-     margin-bottom: 30px;
-   }
 
 .week-schedules{
      display: flex;
      flex-direction: row;
      justify-content: space-evenly;
      margin-bottom: 50px;
+     margin-top: 40px;
 }
 
 
@@ -77,9 +72,11 @@
      margin-top: 10px;
      font-size: .7rem;
      padding-right: 10px;
+     transition: all 0.5s;
 }
 
 .week-schedule-item:hover{
      background-color: rgb(220, 220, 220);
      cursor: pointer;
+     transition: all 0.5s;
 }
