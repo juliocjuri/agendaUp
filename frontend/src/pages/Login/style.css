@@ -1,6 +1,6 @@
 
 .container{
-     animation: fade .5s linear forwards
+     animation: fade 1s linear forwards
 }
 
 .login-wrapper{

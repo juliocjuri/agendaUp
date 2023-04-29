@@ -11,10 +11,10 @@ class Login extends Component {
           }
      }
 
-     handleLogin(){
+     async handleLogin(){
           let res;
 
-          Api.auth({
+          await Api.auth({
                email: this.state.email,
                password: this.state.password
           }).then((result) => {
