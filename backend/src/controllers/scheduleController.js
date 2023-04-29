@@ -32,7 +32,11 @@ const createSchedule = async (req, res) => {
 const getUserSchedules = async (req, res) => {
      try{
           const userSchedules = await Schedule.find({
-               user: req.user.email
+               $or: [{
+                    user: req.user.email
+               }, {
+                    invitedEmails: req.user.email
+               }]
           })
           res.json(userSchedules)
      } catch (err){
