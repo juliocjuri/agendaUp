@@ -9,7 +9,19 @@ import  Api from '../../../services/api';
 /*
 TODO: I have to insert the list of schedules depending on the quantity of completed schedules from the db
 */
+async function get(){
+     const b = await Api.auth({
+          email: 'admin@admin.com',
+          password: 'admin'
+     })
 
+     console.log(b)
+
+     const a = await Api.getAllUserSchedules(b.data.token)
+     console.log(a)
+}
+
+get()
 class Home extends Component {
      constructor(props) {
           super(props);

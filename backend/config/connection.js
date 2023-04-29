@@ -5,8 +5,6 @@ dotenv.config();
 
 const mongoUri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@agendaup.7edfdox.mongodb.net/test`
 
-console.log(mongoUri)
-
 const dbConnection = async () => {
      try {
           await mongoose.connect(
@@ -18,3 +16,9 @@ const dbConnection = async () => {
 }
 
 module.exports = dbConnection
+
+/* TODO
+* Disclaimer: when inserting this application into AWS
+* we'll have to allow the IP address of the machine in the
+* Mongo Compass configuration 
+*/
