@@ -10,6 +10,8 @@
      font-size: 2rem;
      font-weight: bold;
      margin-top: 20vh;
+     
+     animation: fade 1s linear forwards
 }
 
 .schedules-wrapper{
@@ -17,6 +19,7 @@
      margin-right: auto;
      margin-top: 5%;
      width: 50%;
+     animation: fade 1s linear forwards
 }
 
 label{
@@ -42,4 +45,14 @@ select{
      background-color: rgb(220, 220, 220);
      cursor: pointer;
      transition: all 0.5s;
+}
+
+
+@keyframes fade {
+     0%{
+          opacity: 0;
+     }
+     100%{
+          opacity: 1;
+     }
 }

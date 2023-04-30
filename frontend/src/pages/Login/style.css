@@ -1,6 +1,5 @@
 
 .container{
-     animation: fade 1s linear forwards
 }
 
 .login-wrapper{
@@ -10,6 +9,7 @@
      margin-right: auto;
      flex-direction: column;
      margin-top: 10%;
+     animation: fade 1s linear forwards
 } 
 
 .login-header{
@@ -89,14 +89,8 @@ button.login-input-button:hover{
 }
 
 @keyframes fade {
-     1%{
+     0%{
           opacity: 0;
-     }
-     30%{
-          opacity: 0.1;
-     }
-     50%{
-          opacity: 0.5;
      }
      100%{
           opacity: 1;
