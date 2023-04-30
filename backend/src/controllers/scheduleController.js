@@ -38,7 +38,7 @@ const getUserSchedules = async (req, res) => {
                     invitedEmails: req.user.email
                }]
           })
-          res.json(userSchedules)
+          res.json({schedules: userSchedules, user: req.user.email})
      } catch (err){
           res.status(500).json({ error: "Couldn't make the requisition"});
      }
