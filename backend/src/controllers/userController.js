@@ -6,11 +6,11 @@ const dayInMilisecond = 86400000;
 
 const createUser = async (req, res) => {
      const { name, email, password } = req.body;
-
+     
      const alreadyExists = await User.findOne({ email });
 
      if(alreadyExists){
-          return res.status(400).json();
+          return res.status(400).json({ message: "user already exists"});
      }
 
 
@@ -31,7 +31,7 @@ const createUser = async (req, res) => {
           }
      }
 
-     jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d' }, (error) => {
+     jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d' }, (error, token) => {
                if(!error) return res.json({ token }).status(200)
           }
      )
@@ -56,7 +56,7 @@ const authUser = async (req, res) => {
 
      const payload = {
           user: {
-               email: user.email
+               email: user.email,
           }
      }
      
@@ -74,7 +74,13 @@ const authUser = async (req, res) => {
      )
 }
 
+const getUser = (req, res) => {
+     const { email } = req.user;
+     res.status(200).json({ email: email})
+}
+
 module.exports = {
      createUser,
-     authUser
+     authUser,
+     getUser
 }
