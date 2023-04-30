@@ -6,13 +6,15 @@ import {
      FaBell,
      FaList,
      FaPlus } from 'react-icons/fa'
+import { Navigate } from 'react-router-dom';
 
 class Sidebar extends Component {
      constructor(props){
           super(props);
           this.state = {
                isOpened: false,
-               rotate: false
+               rotate: false,
+               navigateTo: <></>
           }
           this.menuItems = [
                {
@@ -35,8 +37,15 @@ class Sidebar extends Component {
                    name:"Notificações",
                    icon: <FaBell className='sidebar-item-icon' color='#0048a7'/>
                }
-           ]
+           ];
+
           
+     }
+     handleClick(screen){
+          console.log(screen)
+          this.setState({
+               navigateTo: <Navigate to={screen} replace={true}/>
+          })
      }
 
      handleButtonClick(){
@@ -49,6 +58,7 @@ class Sidebar extends Component {
 render() {
      return (
           <div>
+               {this.state.navigateTo}
                <div className={this.state.isOpened ? 
                          'sidebar-wrapper' :
                          'sidebar-wrapper sidebar-wrapper-collapsed'}>
@@ -69,7 +79,7 @@ render() {
                     <main>
                          {this.menuItems.map((item, index) => {
                               return(
-                                   <div className='sidebar-item-wrapper'>
+                                   <div className='sidebar-item-wrapper' onClick={() => { this.handleClick(item.path) }}>
                                         <div className='sidebar-item-icon'>
                                              {item.icon}
                                         </div>

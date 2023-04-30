@@ -1,19 +1,20 @@
 import React, { Component, useState } from 'react';
 import './style.css';
 import Api from '../../services/api';
+import { Navigate } from 'react-router-dom';
 
 class Login extends Component {
      constructor(props) {
           super(props);
           this.state = {
                email: '',
-               password: ''
+               password: '',
+               loginResult: false
           }
      }
 
      async handleLogin(){
           let res;
-
           await Api.auth({
                email: this.state.email,
                password: this.state.password
@@ -21,6 +22,9 @@ class Login extends Component {
                if(result.status == 200){
                      res = result.data.token
                      localStorage.setItem('token', res)
+                     this.setState({
+                         loginResult: true
+                     })
                }
                else(alert("Couldn't login"))
           })
@@ -37,6 +41,9 @@ class Login extends Component {
                               </div>
                          </header>
                          <main className='login-content'>
+                              {this.state.loginResult && (
+                              <Navigate to='home' replace={true}/>
+                              )}
                               <form 
                                    className='login-form'>
                                    
