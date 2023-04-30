@@ -22,17 +22,11 @@ class MySchedules extends Component {
                const res = await Api.getAllUserSchedules(localStorage.getItem('token')).then((result) => {
                     this.setState({
                          user: result.data.user
-                    }, () => {
-                         console.log("user" + this.state.user)
                     })
-                    console.log(result.data.schedules)
                     for(let i = 0; i < result.data.schedules.length; i++){
-                         console.log(result.data.schedules[i])
                          this.setState(prev => ({
                               schedules: [...prev.schedules, result.data.schedules[i]]
-                         }), () => {
-                              console.log(this.state.schedules)
-                         })
+                         }))
                     }
                })
                return res

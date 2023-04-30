@@ -9,7 +9,8 @@ class Login extends Component {
           this.state = {
                email: '',
                password: '',
-               loginResult: false
+               loginResult: false,
+               navigateTo: <></>
           }
      }
 
@@ -33,6 +34,7 @@ class Login extends Component {
      render() {
           return (
                <div className='container'>
+                    {this.state.navigateTo}
                     <div className='login-wrapper'>
                          <header className='login-header'>
                               <img src='/src/assets/logo.png' className='logo' />
@@ -78,6 +80,14 @@ class Login extends Component {
                                         onClick={() => this.handleLogin()}
                                    >
                                         Entrar
+                                   </button>
+                                   <button
+                                        className='login-input-button' 
+                                        onClick={() => this.setState({
+                                             navigateTo: <Navigate to='/register'/>
+                                        })}
+                                   >
+                                        Registrar
                                    </button>
                          </main>
                     </div>

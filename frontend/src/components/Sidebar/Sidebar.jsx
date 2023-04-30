@@ -1,15 +1,17 @@
 import React, { Component, useState } from 'react';
 import './Sidebar.css'
-import { 
+import {
      FaBars,
      FaHome,
      FaBell,
      FaList,
-     FaPlus } from 'react-icons/fa'
+     FaPlus,
+     FaSignOutAlt
+} from 'react-icons/fa'
 import { Navigate } from 'react-router-dom';
 
 class Sidebar extends Component {
-     constructor(props){
+     constructor(props) {
           super(props);
           this.state = {
                isOpened: false,
@@ -18,82 +20,96 @@ class Sidebar extends Component {
           }
           this.menuItems = [
                {
-                   path:"/home",
-                   name:"Home",
-                   icon: <FaHome className='sidebar-item-icon' color='#0048a7'/>
+                    path: "/home",
+                    name: "Home",
+                    icon: <FaHome className='sidebar-item-icon' color='#0048a7' />
                },
                {
-                   path:"/createschedule",
-                   name:"Agendar",
-                   icon: <FaPlus className='sidebar-item-icon' color='#0048a7'/> 
+                    path: "/createschedule",
+                    name: "Agendar",
+                    icon: <FaPlus className='sidebar-item-icon' color='#0048a7' />
                },
                {
-                   path:"/myschedules",
-                   name:"Agendamentos",
-                   icon: <FaList className='sidebar-item-icon' color='#0048a7'/> 
+                    path: "/myschedules",
+                    name: "Agendamentos",
+                    icon: <FaList className='sidebar-item-icon' color='#0048a7' />
                },
                {
-                   path:"/notifications",
-                   name:"Notificações",
-                   icon: <FaBell className='sidebar-item-icon' color='#0048a7'/>
+                    path: "/notifications",
+                    name: "Notificações",
+                    icon: <FaBell className='sidebar-item-icon' color='#0048a7' />
+               },
+               {
+                    path: "/",
+                    name: "Sair",
+                    icon: <FaSignOutAlt className='sidebar-item-icon' color='#0048a7' />
                }
-           ];
+          ];
 
-          
+
      }
-     handleClick(screen){
-          console.log(screen)
+
+     resetPath() {
           this.setState({
-               navigateTo: <Navigate to={screen} replace={true}/>
+               navigateTo: <></>
           })
      }
 
-     handleButtonClick(){
-          this.setState({ 
+     handleScreenNavigation(screen) {
+          if(screen == '/') localStorage.removeItem('token');
+          this.setState({
+               navigateTo: <Navigate to={screen} replace={true} />
+          }, () => {
+               this.resetPath();
+          })
+     }
+
+     handleCollpseClick() {
+          this.setState({
                isOpened: !this.state.isOpened,
                rotate: !this.state.rotate
           })
      }
 
-render() {
-     return (
-          <div>
-               {this.state.navigateTo}
-               <div className={this.state.isOpened ? 
+     render() {
+          return (
+               <div>
+                    {this.state.navigateTo}
+                    <div className={this.state.isOpened ?
                          'sidebar-wrapper' :
                          'sidebar-wrapper sidebar-wrapper-collapsed'}>
-                    
-                    <button onClick={() => {
-                         this.handleButtonClick();
-                    }} className='collapse-btn' > 
-                    <FaBars className='collapse-btn-icon'/>
-                    </button>
-                    <header className='header-wrapper'>
-                         <img 
-                              src='/src/assets/logo-check-sign.png' 
-                              alt='fgdg' 
-                              className='logo-check-sign'
-                              rotate={this.state.rotate.toString()}
-                         />
-                    </header>
-                    <main>
-                         {this.menuItems.map((item, index) => {
-                              return(
-                                   <div className='sidebar-item-wrapper' onClick={() => { this.handleClick(item.path) }}>
-                                        <div className='sidebar-item-icon'>
-                                             {item.icon}
+
+                         <button onClick={() => {
+                              this.handleCollpseClick();
+                         }} className='collapse-btn' >
+                              <FaBars className='collapse-btn-icon' />
+                         </button>
+                         <header className='header-wrapper'>
+                              <img
+                                   src='/src/assets/logo-check-sign.png'
+                                   alt='logo'
+                                   className='logo-check-sign'
+                                   rotate={this.state.rotate.toString()}
+                              />
+                         </header>
+                         <main>
+                              {this.menuItems.map((item, index) => {
+                                   return (
+                                        <div className='sidebar-item-wrapper' onClick={() => { this.handleScreenNavigation(item.path) }}>
+                                             <div className='sidebar-item-icon'>
+                                                  {item.icon}
+                                             </div>
+                                             <div className={this.state.isOpened ? 'sidebar-item-text' : 'sidebar-item-text sidebar-item-text-collapsed'}>
+                                                  {item.name}
+                                             </div>
                                         </div>
-                                        <div className={this.state.isOpened ? 'sidebar-item-text' : 'sidebar-item-text sidebar-item-text-collapsed'}>
-                                             {item.name}
-                                        </div>
-                                   </div>
-                              )
-                         })}
-                    </main>
+                                   )
+                              })}
+                         </main>
+                    </div>
                </div>
-          </div>
-     )
-}
+          )
+     }
 
 }
 
