@@ -21,6 +21,23 @@ export default class Api{
           } 
      } 
 
+     static async createSchedule(scheduleData, token){
+               try{
+                    const res = await axios.post(
+                         `${api}api/schedule/create`,
+                         scheduleData,{
+                              headers: {
+                              "Access-Control-Allow-Origin": "*",
+                              "Authorization": `${token}`
+                              },
+                         }
+                    )
+                    return res;
+               }catch(err) {
+                    return err
+               }
+     }
+
      static async auth(user) {
           try{
                const res = await axios.post(
@@ -49,8 +66,29 @@ export default class Api{
                          }
                     }
                )
+               return res
           } catch(err){
                return err
           }
      }
+
+     static async getUser(token){  
+          try {
+               const res = await axios.get(
+                    `${api}api/user/getuser`,
+                    {
+                         headers: {
+                         "Access-Control-Allow-Origin": "*",
+                         "Authorization": `${token}`
+                         },
+                         
+               }
+               )
+               return res;
+          } catch(err){
+               return err;
+          } 
+     } 
+
+     
 }
