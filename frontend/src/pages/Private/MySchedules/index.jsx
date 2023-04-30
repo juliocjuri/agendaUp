@@ -10,7 +10,8 @@ class MySchedules extends Component {
           super(props);
           this.state = {
                selectedFilter: 'all',
-               schedules: []
+               schedules: [],
+               user: ''
           }
      }
 
@@ -19,10 +20,16 @@ class MySchedules extends Component {
           if(!localStorage.getItem('token')) alert("Redirect to login")
           else{
                const res = await Api.getAllUserSchedules(localStorage.getItem('token')).then((result) => {
-                    for(let i = 0; i < result.data.length; i++){
-                         console.log(result.data[i])
+                    this.setState({
+                         user: result.data.user
+                    }, () => {
+                         console.log("user" + this.state.user)
+                    })
+                    console.log(result.data.schedules)
+                    for(let i = 0; i < result.data.schedules.length; i++){
+                         console.log(result.data.schedules[i])
                          this.setState(prev => ({
-                              schedules: [...prev.schedules, result.data[i]]
+                              schedules: [...prev.schedules, result.data.schedules[i]]
                          }), () => {
                               console.log(this.state.schedules)
                          })
@@ -30,10 +37,6 @@ class MySchedules extends Component {
                })
                return res
           }
-     }
-
-     handleFilter(){
-          
      }
 
      render() {
@@ -51,7 +54,6 @@ class MySchedules extends Component {
                               this.setState({
                                    selectedFilter: e.target.value
                               })
-                              this.handleFilter();
                          }}>
                               <option value="all" selected >Todos</option>
                               <option value="myself">Marcados por mim</option>
@@ -62,18 +64,34 @@ class MySchedules extends Component {
                               <ul>
                                    {
                                         this.state.schedules.map((schedule, index) => {
-                                             return(
-                                                  <li className='schedule-item'>
-                                                       <Checkbox />
-                                                       {schedule.name}
-                                                  </li>
-                                             )
+                                             if(this.state.selectedFilter == 'all'){
+                                                  return(
+                                                       <li className='schedule-item'>
+                                                            <Checkbox />
+                                                            {schedule.name}
+                                                       </li>
+                                                  )
+                                             }else if(this.state.selectedFilter == 'myself'){
+                                                  if(schedule.user == this.state.user){
+                                                       return(
+                                                            <li className='schedule-item'>
+                                                                 <Checkbox />
+                                                                 {schedule.name}
+                                                            </li>
+                                                       )
+                                                  }
+                                             }else if(this.state.selectedFilter == 'other'){
+                                                  if(schedule.invitedEmails.includes(this.state.user)){
+                                                       return(
+                                                            <li className='schedule-item'>
+                                                                 <Checkbox />
+                                                                 {schedule.name}
+                                                            </li>
+                                                       )
+                                                  }
+                                             }
                                         })
                                    }
-                                   <li className='schedule-item'>
-                                        <Checkbox />
-                                        Item
-                                   </li>
                               </ul>
 
                          </div>
