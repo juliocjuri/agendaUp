@@ -3,9 +3,11 @@ import Sidebar from '../../../components/Sidebar/Sidebar';
 import './style.css'
 import { Checkbox } from '@mui/material'
 import Api from '../../../services/api';
-import DatePicker from 'react-datepicker'
+import DatePicker, { registerLocale } from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import Modal from 'react-modal'
+import ptbr from 'date-fns/locale/pt-BR'
+registerLocale('pt-BR', ptbr)
 
 Modal.setAppElement('#root');
 
@@ -16,7 +18,6 @@ class CreateSchedule extends Component {
                scheduleName: '',
                scheduleEmail: '',
                scheduleDate: new Date(Date.now()),
-               scheduleCompleted: false,
                scheduleInvitedEmails: [],
                scheduleCurrentInvintingEmail: '',
                isModalOpen: false
@@ -28,7 +29,6 @@ class CreateSchedule extends Component {
                scheduleName: '',
                scheduleEmail: '',
                scheduleDate: new Date(Date.now()),
-               scheduleCompleted: false,
                scheduleInvitedEmails: [],
                scheduleCurrentInvintingEmail: '',
           })
@@ -45,11 +45,13 @@ class CreateSchedule extends Component {
           const scheduleData = {
                name: this.state.scheduleName,
                user: this.state.scheduleEmail,
-               date: this.state.scheduleDate,
-               completed: this.state.scheduleCompleted,
+               date: this.state.scheduleDate.toLocaleDateString('pt-BR').toString(),
                invitedEmails: this.state.scheduleInvitedEmails,
           }
 
+
+          //For some reason, the above date is printed correctly like a pt-BR date
+          //But when I receive the email, dd and mm are swiped. Crazy!
 
           const res = await Api.createSchedule(scheduleData, localStorage.getItem('token')).then((result) => {
                if (result.status == 200) {
@@ -73,6 +75,7 @@ class CreateSchedule extends Component {
                                    Agendamento realizado com sucesso
                               </div>
                               <button className='modal-btn' onClick={() => {
+                                   this.getUser();
                                    this.setState({
                                         isModalOpen: !this.state.isModalOpen
                                    })
@@ -103,7 +106,12 @@ class CreateSchedule extends Component {
                          <label>
                               Data
                          </label>
-                         <DatePicker className='calendar-wrapper' selected={this.state.scheduleDate} onChange={(date) => {
+                         <DatePicker 
+                              className='calendar-wrapper' 
+                              selected={this.state.scheduleDate}
+                              locale='pt-BR' 
+                              onChange={(date) => {
+                                        console.log('date' + date)
                               this.setState({
                                    scheduleDate: date
                               })

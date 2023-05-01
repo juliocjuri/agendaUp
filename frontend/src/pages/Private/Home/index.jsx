@@ -7,9 +7,7 @@ import  Api from '../../../services/api';
 
 const oneWeekInMiliSeconds = 604800000;
 const oneDayInMiliSeconds = 86400000;
-/*
-TODO: I have to insert the list of schedules depending on the quantity of completed schedules from the db
-*/
+
 
 class Home extends Component {
      constructor(props) {

@@ -1,9 +1,8 @@
-function Schedule(name, data, user, invitedEmails, completed){
+function Schedule(name, data, user, invitedEmails){
      this.name = name;
      this.data = data;
      this.user = user;
      this.invitedEmails = invitedEmails;
-     this.completed = completed;
 }
 
 const schedules = [

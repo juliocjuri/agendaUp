@@ -39,12 +39,34 @@ select{
      font-size: .7rem;
      padding-right: 10px;
      transition: all 0.5s;
+     padding: 2%
 }
 
 .schedule-item:hover{
      background-color: rgb(220, 220, 220);
      cursor: pointer;
      transition: all 0.5s;
+}
+
+.schedule-item-header{
+     display: flex;
+     flex-direction: row;
+}
+
+.schedule-title{
+     margin-top: auto;
+     margin-bottom: auto;
+     font-weight: bold;
+     padding: 15px
+}
+
+
+.schedule-detail{
+     margin-top: auto;
+     margin-bottom: 10px;
+     display: flex;
+     align-self: flex-end;
+     margin-left: 30px;
 }
 
 

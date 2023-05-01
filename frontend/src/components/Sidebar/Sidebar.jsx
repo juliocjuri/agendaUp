@@ -35,11 +35,6 @@ class Sidebar extends Component {
                     icon: <FaList className='sidebar-item-icon' color='#0048a7' />
                },
                {
-                    path: "/notifications",
-                    name: "Notificações",
-                    icon: <FaBell className='sidebar-item-icon' color='#0048a7' />
-               },
-               {
                     path: "/",
                     name: "Sair",
                     icon: <FaSignOutAlt className='sidebar-item-icon' color='#0048a7' />

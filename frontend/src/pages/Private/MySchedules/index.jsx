@@ -16,14 +16,16 @@ class MySchedules extends Component {
      }
 
 
-     async fetchSchedules(){
-          if(!localStorage.getItem('token')) alert("Redirect to login")
-          else{
+     async fetchSchedules() {
+          if (!localStorage.getItem('token')) alert("Redirect to login")
+          else {
                const res = await Api.getAllUserSchedules(localStorage.getItem('token')).then((result) => {
+
+                    console.log(result.data.schedules[0].date)
                     this.setState({
                          user: result.data.user
                     })
-                    for(let i = 0; i < result.data.schedules.length; i++){
+                    for (let i = 0; i < result.data.schedules.length; i++) {
                          this.setState(prev => ({
                               schedules: [...prev.schedules, result.data.schedules[i]]
                          }))
@@ -58,33 +60,96 @@ class MySchedules extends Component {
                               <ul>
                                    {
                                         this.state.schedules.map((schedule, index) => {
-                                             if(this.state.selectedFilter == 'all'){
-                                                  return(
+                                             if (this.state.selectedFilter == 'all') {
+                                                  return (
                                                        <li className='schedule-item'>
-                                                            <Checkbox />
-                                                            {schedule.name}
+                                                            <header className='schedule-item-header'>
+                                                                 <div className='schedule-title'>
+                                                                      {schedule.name}
+                                                                 </div>
+                                                            </header>
+                                                            <div className='schedule-detail'>
+                                                                 Data: {schedule.date}
+                                                            </div>
+                                                            <div className='schedule-detail'>
+                                                                 Organizador: {schedule.user}
+                                                            </div>
+                                                            <div className='schedule-detail'>
+                                                                 Participantes:
+                                                                 <br /> <br />{schedule.invitedEmails.map((email, index) => {
+                                                                      return (
+                                                                           <>
+                                                                                {index + 1}. {email} <br />
+                                                                           </>
+                                                                      )
+                                                                 })}
+                                                            </div>
                                                        </li>
                                                   )
-                                             }else if(this.state.selectedFilter == 'myself'){
-                                                  if(schedule.user == this.state.user){
-                                                       return(
+                                             } else if (this.state.selectedFilter == 'myself') {
+                                                  if (schedule.user == this.state.user) {
+                                                       return (
                                                             <li className='schedule-item'>
-                                                                 <Checkbox />
-                                                                 {schedule.name}
+                                                                 <header className='schedule-item-header'>
+                                                                 <Checkbox onChange={(value) => {
+                                                                      console.log(value)
+                                                                 }}/>
+                                                                      <div className='schedule-title'>
+                                                                           {schedule.name}
+                                                                      </div>
+                                                                 </header>
+                                                                 <div className='schedule-detail'>
+                                                                      Data: {schedule.date}
+                                                                 </div>
+                                                                 <div className='schedule-detail'>
+                                                                      Organizador: {schedule.user}
+                                                                 </div>
+                                                                 <div className='schedule-detail'>
+                                                                      Participantes:
+                                                                      <br /> <br />{schedule.invitedEmails.map((email, index) => {
+                                                                           return (
+                                                                                <>
+                                                                                     {index + 1}. {email} <br />
+                                                                                </>
+                                                                           )
+                                                                      })}
+                                                                 </div>
                                                             </li>
                                                        )
                                                   }
-                                             }else if(this.state.selectedFilter == 'other'){
-                                                  if(schedule.invitedEmails.includes(this.state.user)){
-                                                       return(
+                                             } else if (this.state.selectedFilter == 'other') {
+                                                  if (schedule.invitedEmails.includes(this.state.user)) {
+                                                       return (
                                                             <li className='schedule-item'>
-                                                                 <Checkbox />
-                                                                 {schedule.name}
+                                                                 <header className='schedule-item-header'>
+                                                                 <Checkbox onChange={(value) => {
+                                                                      console.log(value)
+                                                                 }}/>
+                                                                      <div className='schedule-title'>
+                                                                           {schedule.name}
+                                                                      </div>
+                                                                 </header>
+                                                                 <div className='schedule-detail'>
+                                                                      Data: {schedule.date}
+                                                                 </div>
+                                                                 <div className='schedule-detail'>
+                                                                      Organizador: {schedule.user}
+                                                                 </div>
+                                                                 <div className='schedule-detail'>
+                                                                      Participantes:
+                                                                      <br /> <br />{schedule.invitedEmails.map((email, index) => {
+                                                                           return (
+                                                                                <>
+                                                                                     {index + 1}. {email} <br />
+                                                                                </>
+                                                                           )
+                                                                      })}
+                                                                 </div>
                                                             </li>
                                                        )
                                                   }
                                              }
-                                        })
+                                        }).reverse()
                                    }
                               </ul>
 
@@ -93,7 +158,7 @@ class MySchedules extends Component {
                </div>
           )
      }
-     
+
 }
 
 export default MySchedules;
