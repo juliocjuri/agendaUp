@@ -1,20 +1,21 @@
 const Schedule = require('../models/Schedule');
 const User = require('../models/User');
-
 const jwt = require('jsonwebtoken');
+const sendMail = require('../services/mail')
 
 //TODO: need to fix the status codes
 
 const createSchedule = async (req, res) => {
-     const { name, date, user, invitedEmails, completed } = req.body;
-     
+     const { name, date, user, invitedEmails} = req.body;
+
      const schedule = new Schedule({
           name,
           date,
           user,
           invitedEmails,
-          completed
-     });
+     }); 
+
+     sendMail(user, invitedEmails, date, name);
 
      User.find({}).then((registeredUsers) => {
           let alreadySentServerResponse = false;

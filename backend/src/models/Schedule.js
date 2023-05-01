@@ -6,16 +6,13 @@ const ScheduleSchema = new Schema({
           type: String
      },
      date: {
-          type: Date
+          type: String
      },
      user: {
           type: String
      },
      invitedEmails: {
           type: Array
-     },
-     completed: {
-          type: Boolean
      }
 })
 
