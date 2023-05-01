@@ -91,9 +91,6 @@ class MySchedules extends Component {
                                                        return (
                                                             <li className='schedule-item'>
                                                                  <header className='schedule-item-header'>
-                                                                 <Checkbox onChange={(value) => {
-                                                                      console.log(value)
-                                                                 }}/>
                                                                       <div className='schedule-title'>
                                                                            {schedule.name}
                                                                       </div>
@@ -122,9 +119,6 @@ class MySchedules extends Component {
                                                        return (
                                                             <li className='schedule-item'>
                                                                  <header className='schedule-item-header'>
-                                                                 <Checkbox onChange={(value) => {
-                                                                      console.log(value)
-                                                                 }}/>
                                                                       <div className='schedule-title'>
                                                                            {schedule.name}
                                                                       </div>

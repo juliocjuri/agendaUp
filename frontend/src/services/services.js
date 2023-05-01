@@ -1,2 +1,2 @@
-export const api = 'http://localhost:3000/' 
-//localhost or 192.168.0.106
+export const api = 'http://3.95.195.130:3000/' 
+//This is the AWS EC2 instance address
