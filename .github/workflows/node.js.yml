@@ -12,9 +12,16 @@ jobs:
 
     steps:
       - name: executing remote ssh commands using ssh key
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.AWS_HOST }}
-          username: ${{ secrets.AWS_USER }}
-          key: ${{ secrets.AWS_KEY }}
-          script: sh deploy.sh
+      - uses: actions/checkout@v2
+        env:
+            PRIVATE_KEY: ${{ secrets.AWS_KEY }}
+            HOSTNAME: ${{secrets.AWS_HOST}}
+            USER_NAME: ${secrets.AWS_USER}
+      
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+
+              cd /home
+              bash deploy.sh
+              '
