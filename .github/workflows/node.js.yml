@@ -15,7 +15,7 @@ jobs:
         env:
             PRIVATE_KEY: ${{ secrets.AWS_KEY }}
             HOSTNAME: ${{secrets.AWS_HOST}}
-            USER_NAME: ${secrets.AWS_USER}
+            USER_NAME: ${{secrets.AWS_USER}}
       
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
