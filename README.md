@@ -11,6 +11,12 @@ O AgendaUp é um projeto criado com o intuito de auxiliar os usuários a marcar 
 
 O deploy deste projeto foi realizado pela AWS, e pode ser encontrado em: http://54.146.233.205:5000/. O repositório possui uma pipeline com o Github Actions para automatizar o processo de atualização da aplicação que roda na instância EC2 da AWS
 
+As principais features do projeto são: 
+
+- Agendamento de compromissos e reuniões
+- Serviço de email para convite 
+- Visualização dos compromissos criados por mim e por outros
+
 ---
 ## Descritivo de desenvolvimento
 
@@ -20,3 +26,4 @@ O projeto possui duas aplicações principais:
 - Backend: api de conexão com o MongoDB
 
 ![logo do AgendaUp](assets/pm2-view.png)
+
