@@ -22,8 +22,25 @@ As principais features do projeto são:
 
 O projeto possui duas aplicações principais:
 
-- App: aplicação que se utiliza de um servidor para servir a aplicação React
+- App: código que se utiliza de um servidor para servir a aplicação React
 - Backend: api de conexão com o MongoDB
 
 ![logo do AgendaUp](assets/pm2-view.png)
 
+Para compilar este projeto em ambiente de desenvolvimento, será necessário fazer apenas um ajuste:
+
+No arquivo app/frontend/src/services/services.js, mude o apontamento da api para localhost. Assim, você poderá utilizá-lo em ambiente local
+
+Após isso, dê o comando npm install dentro das pastas:
+
+     backend
+     app
+     app/frontend
+
+Depois, inicie os dois serviços (api e frontend)
+
+     cd backend
+     npm run dev
+
+     cd app/frontend
+     npm run dev
