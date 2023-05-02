@@ -20,5 +20,3 @@ O projeto possui duas aplicações principais:
 - Backend: api de conexão com o MongoDB
 
 ![logo do AgendaUp](assets/pm2-view.png)
-
-
