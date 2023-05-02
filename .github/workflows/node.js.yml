@@ -18,7 +18,8 @@ jobs:
             USER_NAME: ${{secrets.AWS_USER}}
       
         run: |
-          ssh -i ${PRIVATE_KEY} ${USER_NAME}@${HOSTNAME}
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME}
 
               cd /home
               bash deploy.sh
