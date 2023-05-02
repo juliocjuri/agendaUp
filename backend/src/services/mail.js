@@ -14,7 +14,7 @@ function sendMail(sender, invitedEmails, date, name){
 
 ${sender} te convidou para participar de ${name}, no dia ${date}, através do AgendaUp.
      
-Se você ainda não possui uma conta, crie uma pelo endereço {...}.
+Se você ainda não possui uma conta, crie uma pelo endereço http://54.146.233.205:5000/register.
      
 Até lá!` 
 
