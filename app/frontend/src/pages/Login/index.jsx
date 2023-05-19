@@ -65,7 +65,7 @@ class Login extends Component {
                                         Senha:
                                    </label>
                                    <input 
-                                        type="text" 
+                                        type="password" 
                                         placeholder='•••••••••'
                                         value={this.state.password}
                                         onChange={(value) => {

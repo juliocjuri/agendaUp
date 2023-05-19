@@ -62,7 +62,7 @@ class Register extends Component {
                                    </label>
                                    <input 
                                         type="text" 
-                                        placeholder='ada@lovelace.com'
+                                        placeholder='adalovelace@email.com'
                                         onChange={(value) => {
                                              this.setState({
                                                   registerEmail: value.target.value
@@ -73,7 +73,7 @@ class Register extends Component {
                                         Senha:
                                    </label>
                                    <input 
-                                        type="text" 
+                                        type="password" 
                                         placeholder='•••••••••'
                                         onChange={(value) => {
                                              this.setState({
